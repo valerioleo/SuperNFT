@@ -1,0 +1,8 @@
+{
+  "name": "super-nft",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:valerioleo/SuperNFT.git",
+  "author": "Valerio Leo <mail.valerioleo@gmail.com>",
+  "license": "MIT"
+}
