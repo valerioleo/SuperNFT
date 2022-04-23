@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import {ConnectButton} from '../../components/Wallet';
 // eslint-disable-next-line import/no-named-as-default
-import MyMinepunks from '../../components/MyMinepunks';
+import Router from '../../components/core/Router';
 // import useMinepunks from '../../../services/hooks/connections/useMinepunks';
 
 // type FoundHash = {
@@ -38,7 +38,6 @@ export const HomePage = () => {
   // const [currentDifficulty, setCurrentDifficulty] = useState(0);
   // const [foundHashes, setFoundHashes] = useState([] as Array<FoundHash>);
   // const [isMining, setIsMining] = useState(false);
-  // const {account} = useWeb3React();
 
   // const {mintFromNonce, myMinepunksMetadata} = useMinepunks(account);
 
@@ -78,7 +77,7 @@ export const HomePage = () => {
 
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <span>Minepunks</span>
+          <span>Welcome to Super NFT</span>
         </Grid>
         <Grid item xs={12} sm={6}>
           <ConnectButton />
@@ -86,7 +85,7 @@ export const HomePage = () => {
       </Grid>
 
       <br />
-      <MyMinepunks />
+      <Router />
     </Container>
   );
 };

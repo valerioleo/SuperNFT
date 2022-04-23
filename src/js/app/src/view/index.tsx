@@ -7,20 +7,16 @@
  */
 
 import {Helmet} from 'react-helmet-async';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
-
 import {HomePage} from './pages/HomePage/Loadable';
 
 export function App() {
   return (
-    <BrowserRouter>
-      <Helmet titleTemplate='%s - minepunks' defaultTitle='minepunks'>
-        <meta name='description' content='A minepunks application' />
+    <>
+      <Helmet titleTemplate='%s - superNFT' defaultTitle='superNFT'>
+        <meta name='description' content='A Superfluid application' />
       </Helmet>
 
-      <Switch>
-        <Route exact path='/' component={HomePage} />
-      </Switch>
-    </BrowserRouter>
+      <HomePage />
+    </>
   );
 }

@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "umd",
+    "target": "es2017",
+    "sourceMap": true,
+    "noEmit": true,
+    "noImplicitAny": false,
+    "outDir": "dist",
+    "rootDir": "src",
+    "strictNullChecks": true,
+    "removeComments": false,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types"],
+    "paths": {
+      "@minepunks/*": [
+        "src/js/packages/*"
+      ]
+    }
+  },
+  "include": ["src", "babel.config.js"],
+  "exclude": [
+    "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+    "./node_modules/@types/node/index.d.ts"
+  ]
+}
