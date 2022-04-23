@@ -7,8 +7,8 @@
     "start": "hardhat node",
     "start:test": "npx hardhat node --tags Seed",
     "migrate:hardhat": "npx hardhat --network hardhat deploy",
-    "migrate:kovan": "npx hardhat --network kovan deploy",
-    "migrate:rinkeby": "npx hardhat deploy --network rinkeby --tags Minepunks",
+    "migrate:kovan": "npx hardhat --network kovan deploy --tags AgreementNFT",
+    "migrate:rinkeby": "npx hardhat --network rinkeby deploy --tags AgreementNFT",
     "migrate:live": "npx hardhat --network mainnet deploy",
     "compile": "hardhat compile",
     "test": "hardhat test test/*.test.ts",
@@ -42,6 +42,7 @@
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.6.0",
     "hardhat": "^2.7.0",
+    "hardhat-contract-sizer": "^2.5.1",
     "hardhat-deploy": "^0.9.14",
     "hardhat-gas-reporter": "^1.0.6",
     "prettier": "^2.5.1",
@@ -55,6 +56,7 @@
   "dependencies": {
     "@superfluid-finance/ethereum-contracts": "^1.1.1",
     "base64-sol": "^1.1.0",
+    "erc721a": "^3.2.0",
     "fs-extra": "^10.0.1"
   }
 }
