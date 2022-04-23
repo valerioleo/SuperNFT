@@ -42,6 +42,7 @@ contract AgreementNFT is ERC721A, SuperAppBase {
     address recipient;
     address sender;
     string description;
+    string logo;
     SUBSCRIPTION_TYPE subscriptionType;
     uint256 createdAt;
     bool isActive;
@@ -53,6 +54,7 @@ contract AgreementNFT is ERC721A, SuperAppBase {
     address sender,
     address recipient,
     string memory description,
+    string memory logo,
     SUBSCRIPTION_TYPE subscriptionType,
     ISuperfluidToken token,
     bytes memory ctx
@@ -65,6 +67,7 @@ contract AgreementNFT is ERC721A, SuperAppBase {
       sender: sender,
       recipient: recipient,
       description: description,
+      logo: logo,
       subscriptionType: subscriptionType,
       token: token,
       isActive: true,
@@ -162,7 +165,8 @@ contract AgreementNFT is ERC721A, SuperAppBase {
       getSubscriptionReadableRate(position.subscriptionType, flowRate),
       getSubscriptionReadableInterval(position.subscriptionType),
       uint2str(uint256(senderBalance) / 1e18),
-      daysLeft
+      daysLeft,
+      position.logo
     );
   }
 

@@ -37,6 +37,7 @@ const deployScript = async () => {
     '0xDA172dff49316843ef6FCd848F1fEDcDCa8A3E8c', // sender
     '0xf9BeB989B62EaE2b763d6E59E142D73b4460e457', // recipient
     'Test 1',
+    'https://gateway.pinata.cloud/ipfs/QmSFVita3DMzatzt6kJWxjAR5EytWjCCDJtAG3CSqK5ws4/netflix.svg',
     0,
     '0x745861AeD1EEe363b4AaA5F1994Be40b1e05Ff90', // fDAI
     '0x'

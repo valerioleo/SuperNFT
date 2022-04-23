@@ -41,6 +41,7 @@ const subscribeService = async (
     '0xDA172dff49316843ef6FCd848F1fEDcDCa8A3E8c', // sender
     recipient, // recipient
     'Test 1',
+    'https://gateway.pinata.cloud/ipfs/QmSFVita3DMzatzt6kJWxjAR5EytWjCCDJtAG3CSqK5ws4/netflix.svg',
     0,
     '0x745861AeD1EEe363b4AaA5F1994Be40b1e05Ff90', // fDAI
     '0x'
