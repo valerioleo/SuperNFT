@@ -18,7 +18,7 @@ dotenv.config();
 // Go to https://hardhat.org/config/ to learn more
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.10",
+  solidity: "0.8.13",
   namedAccounts: {
     deployer: 0,
     alice: 1,

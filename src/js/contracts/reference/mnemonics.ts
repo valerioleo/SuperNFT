@@ -1,2 +1,2 @@
-export const mnemonic = 'inhale fence palm already boil arrive cliff erase blanket random electric electric';
+export const mnemonic = 'arch endorse develop immense zero salad walnut riot share control century truly';
 export const mainnetMnemonic = '';

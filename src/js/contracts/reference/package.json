@@ -1,5 +1,5 @@
 {
-  "name": "@minepunks/contracts",
+  "name": "@super-nft/contracts",
   "author": "Valerio Leo @valerioHQ",
   "version": "1.0.0",
   "private": true,
@@ -53,6 +53,7 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
+    "@superfluid-finance/ethereum-contracts": "^1.1.1",
     "base64-sol": "^1.1.0",
     "fs-extra": "^10.0.1"
   }
