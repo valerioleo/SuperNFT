@@ -5,9 +5,26 @@ import "base64-sol/base64.sol";
 import "./superfluid/interfaces/superfluid/ISuperfluidToken.sol";
 import "./superfluid/interfaces/agreements/IConstantFlowAgreementV1.sol";
 import "./SVG.sol";
+import {
+    ISuperfluid,
+    SuperAppBase,
+    SuperAppDefinitions
+} from "@superfluid-finance/ethereum-contracts/contracts/apps/SuperAppBase.sol";
 
-contract AgreementNFT is ERC721A {
-  constructor() ERC721A("AgreementPosition", "AGP") {}
+contract AgreementNFT is ERC721A, SuperAppBase {
+  constructor(ISuperfluid host) ERC721A("AgreementPosition", "AGP") {
+
+    uint256 configWord =
+      SuperAppDefinitions.APP_LEVEL_FINAL |
+      SuperAppDefinitions.BEFORE_AGREEMENT_CREATED_NOOP |
+      SuperAppDefinitions.AFTER_AGREEMENT_CREATED_NOOP |
+      SuperAppDefinitions.BEFORE_AGREEMENT_UPDATED_NOOP |
+      SuperAppDefinitions.AFTER_AGREEMENT_UPDATED_NOOP |
+      SuperAppDefinitions.BEFORE_AGREEMENT_TERMINATED_NOOP |
+      SuperAppDefinitions.AFTER_AGREEMENT_TERMINATED_NOOP;
+
+    host.registerApp(configWord);
+  }
 
   uint private constant SECONDS_IN_MONTH = 2592000;
   uint private constant SECONDS_IN_YEAR = 31536000;
@@ -37,11 +54,12 @@ contract AgreementNFT is ERC721A {
     address recipient,
     string memory description,
     SUBSCRIPTION_TYPE subscriptionType,
-    ISuperfluidToken token
-  ) external payable {
+    ISuperfluidToken token,
+    bytes memory ctx
+  ) public returns (bytes memory){
     // _safeMint's second argument now takes in a quantity, not a tokenId.
     uint256 currentId = totalSupply();
-    _safeMint(msg.sender, 1);
+    _safeMint(sender, 1);
 
     _positionsById[currentId] = PositionData({
       sender: sender,
@@ -52,6 +70,8 @@ contract AgreementNFT is ERC721A {
       isActive: true,
       createdAt: block.timestamp
     });
+
+    return ctx;
   }
 
   function tokenURI(uint256 tokenId) public view override returns (string memory) {
