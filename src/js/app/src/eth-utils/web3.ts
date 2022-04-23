@@ -4,6 +4,7 @@ export const injected = new InjectedConnector({
   supportedChainIds: [
     0,
     1,
+    4,
     42,
     1337
   ]
