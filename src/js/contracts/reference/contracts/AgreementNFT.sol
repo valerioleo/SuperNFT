@@ -125,6 +125,7 @@ contract AgreementNFT is ERC721A, SuperAppBase {
             '"name":"AgreementPosition #', uint2str(tokenId),'",',
             '"description":"', currentPosition.description, '",',
             '"image_data": "data:image/svg+xml;base64,',svg,'",',
+            '"animation_url": "data:image/svg+xml;base64,',svg,'",',
             '"attributes": ', atributes,
           '}'
         ))
