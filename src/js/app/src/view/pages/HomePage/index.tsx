@@ -1,12 +1,11 @@
 /* eslint-disable max-len */
 // import {useState, useEffect} from 'react';
-import {Helmet} from 'react-helmet-async';
 // import {soliditySha3} from 'web3-utils';
 import {
   // Button,
   Container,
-  Grid
-  // Stack
+  Grid,
+  Typography
 } from '@mui/material';
 import {ConnectButton} from '../../components/Wallet';
 // eslint-disable-next-line import/no-named-as-default
@@ -69,22 +68,17 @@ export const HomePage = () => {
   console.log();
 
   return (
-    <Container maxWidth='lg'>
-      <Helmet>
-        <title>Home Page</title>
-        <meta name='description' content='A Boilerplate application homepage' />
-      </Helmet>
-
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <span>Welcome to Super NFT</span>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <ConnectButton />
-        </Grid>
+    <Container maxWidth='xl'>
+      <Grid
+        container
+        // spacing={3}
+        py={5}
+        alignItems='center'
+        justifyContent='space-between'
+      >
+        <Typography color='white' fontWeight='bold'>Super NFT</Typography>
+        <ConnectButton />
       </Grid>
-
-      <br />
       <Router />
     </Container>
   );
