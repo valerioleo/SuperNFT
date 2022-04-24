@@ -1,4 +1,6 @@
 // import {Link} from 'react-router-dom';
+import {useEffect} from 'react';
+import {useWeb3React} from '@web3-react/core';
 import {Box, Typography} from '@mui/material';
 import useSuperSubscription from '../../../services/hooks/connections/useSuperSubscription';
 import spotify from './assets/spotify.svg';
@@ -94,6 +96,16 @@ const SuperSubscriptionLink = props => {
 // eslint-disable-next-line arrow-body-style
 const SuperSubscriptions = () => {
   // const {account} = useWeb3React();
+
+  const {listSubscriptions, unsubscribe} = useSuperSubscription();
+  const {account = '0xDA172dff49316843ef6FCd848F1fEDcDCa8A3E8c'} = useWeb3React();
+
+  useEffect(() => {
+    if(account) {
+      listSubscriptions({sender: account});
+      unsubscribe({recipient: '0x9664832C660f43a2CE6731b6d0842bb70A496B37'});
+    }
+  }, [account]);
 
   return (
     <>
