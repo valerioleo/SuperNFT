@@ -172,3 +172,9 @@ export const predictBlockDate = (
 
   return new Date(Date.now() + millisecondsDelta);
 };
+
+export const getBalance = (providerOptions, address) => {
+  const web3 = getWeb3({chainId: getNetworkId(process.env.REACT_APP_NETWORK_NAME)});
+
+  return web3.eth.getBalance(address);
+};

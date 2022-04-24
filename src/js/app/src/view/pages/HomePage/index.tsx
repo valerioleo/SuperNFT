@@ -3,13 +3,11 @@
 // import {soliditySha3} from 'web3-utils';
 import {
   // Button,
-  Container,
-  Grid,
-  Typography
+  Container
 } from '@mui/material';
-import {ConnectButton} from '../../components/Wallet';
 // eslint-disable-next-line import/no-named-as-default
 import Router from '../../components/core/Router';
+import Header from './Header';
 // import useMinepunks from '../../../services/hooks/connections/useMinepunks';
 
 // type FoundHash = {
@@ -69,16 +67,7 @@ export const HomePage = () => {
 
   return (
     <Container maxWidth='xl'>
-      <Grid
-        container
-        // spacing={3}
-        py={5}
-        alignItems='center'
-        justifyContent='space-between'
-      >
-        <Typography color='white' fontWeight='bold'>Super NFT</Typography>
-        <ConnectButton />
-      </Grid>
+      <Header/>
       <Router />
     </Container>
   );
