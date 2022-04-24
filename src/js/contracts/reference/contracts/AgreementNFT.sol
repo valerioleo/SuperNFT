@@ -117,7 +117,8 @@ contract AgreementNFT is ERC721A, SuperAppBase {
       flowRate,
       currentPosition,
       senderBalance,
-      daysleft
+      daysleft,
+      flowRate != 0
     );
 
     return string(abi.encodePacked(
@@ -140,14 +141,16 @@ contract AgreementNFT is ERC721A, SuperAppBase {
     int96 flowRate,
     PositionData memory position,
     int256 senderBalance,
-    string memory daysleft
+    string memory daysleft,
+    bool isActive
   ) private pure returns (string memory){
     bytes memory attributes = abi.encodePacked(
       '[',
         '{"trait_type":"interval","value":"', getSubscriptionReadableInterval(position.subscriptionType),'"},',
         '{"trait_type":"rate","value":"', getSubscriptionReadableRate(position.subscriptionType, flowRate),'"},',
         '{"trait_type":"credit","value":"', uint2str(uint256(uint256(senderBalance)) / 1e18),'"},',
-        '{"trait_type":"days left","value":"', daysleft,'"}',
+        '{"trait_type":"days left","value":"', daysleft,'"},',
+        '{"trait_type":"status","value":"', isActive ? 'active' : 'incative','"}',
       ']'
     );
 
