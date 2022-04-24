@@ -55,7 +55,7 @@ const subscribeService = async (
     },
     {
       operationType: 202, // call app
-      target: '0x76E19f21c23587C58CbAbB4052F3dC9265f52c60', // NFT address
+      target: '0x9271bbc0175b1c73c3fcae8ad2385844083910ed', // NFT address
       data: nftCallEncoded
     }
   ]);

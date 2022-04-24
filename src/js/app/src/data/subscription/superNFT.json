@@ -474,6 +474,11 @@
             "type": "string"
           },
           {
+            "internalType": "string",
+            "name": "logo",
+            "type": "string"
+          },
+          {
             "internalType": "enum AgreementNFT.SUBSCRIPTION_TYPE",
             "name": "subscriptionType",
             "type": "uint8"
@@ -573,6 +578,11 @@
       {
         "internalType": "string",
         "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "logo",
         "type": "string"
       },
       {
