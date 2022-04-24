@@ -11,6 +11,7 @@ import {styled} from '@mui/material/styles';
 import {makeStyles} from '@mui/styles';
 import {ExpandMore} from '@mui/icons-material';
 import {getBalance} from '../../../../eth-utils/core/v1/utils';
+import {fromWei} from '../../../../eth-utils/core/v1';
 import useWeb3React from '../services/hooks/useWeb3React';
 import {useEagerConnect} from '../services/hooks';
 import withWalletConnection from './WalletConnection';
@@ -73,6 +74,7 @@ const numberForAddress = address => {
 
 const CBConnectButton = props => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [balance, setBalance] = useState(0);
 
   const {openPanel} = props;
 
@@ -95,12 +97,9 @@ const CBConnectButton = props => {
 
   const loadBalance = async () => {
     try {
-      console.log(process.env.REACT_APP_WEB3_HTTP_PROVIDER_URL);
-      const balance = await getBalance(undefined, account);
-      console.log('🚀 ~ file: ConnectButton.jsx ~ line 99 ~ loadBalance ~ balance', balance);
+      setBalance(await getBalance(undefined, account));
     }
     catch(e) {
-      console.log('🚀 ~ file: ConnectButton.jsx ~ line 102 ~ loadBalance ~ e', e);
       // Do nothing
     }
   };
@@ -141,7 +140,7 @@ const CBConnectButton = props => {
                 className={classes.balance}
                 data-test-id='wallet-ui::connected-wallet-address'
               >
-                12.50 ETH
+                {Number(fromWei('ether', balance).toString()).toLocaleString()} ETH
               </Typography>
             </Box>
             <Box className={classes.accountBox}>
