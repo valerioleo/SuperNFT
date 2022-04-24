@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-operators */
 import {useDispatch, useSelector} from 'react-redux';
 import {prop} from '../../../common/fn';
-import {subscribe} from '../../../data/subscription/subscriptionActions';
+import {subscribe, unsubscribe, listSubscriptions} from '../../../data/subscription/subscriptionActions';
 
 export default () => {
   const dispatch = useDispatch();
@@ -9,6 +9,8 @@ export default () => {
 
   return {
     subscribe: (dispatch)['∘'](subscribe),
+    unsubscribe: (dispatch)['∘'](unsubscribe),
+    listSubscriptions: (dispatch)['∘'](listSubscriptions),
     subscription
   };
 };

@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable no-underscore-dangle */
 import {createAction} from 'redux-actions';
 import {Framework} from '@superfluid-finance/sdk-core';
 import {ethers} from 'ethers';
@@ -5,11 +7,9 @@ import SuperNft from './superNFT.json';
 import CFAv1 from './cfav1.json';
 
 export const SUBSCRIBE = 'SUPER_SUBSCRIPTION:SUBSCRIBE';
+export const LIST_SUBSCRIPTIONS = 'SUPER_SUBSCRIPTION:LIST_SUBSCRIPTIONS';
 
-const subscribeService = async (
-  recipient = '0x9664832C660f43a2CE6731b6d0842bb70A496B37',
-  flowRate = '100'
-) => {
+const getSuperFluid = async () => {
   const provider = new ethers.providers.Web3Provider((window as any).ethereum);
 
   const signer = provider.getSigner();
@@ -20,8 +20,39 @@ const subscribeService = async (
     provider
   });
 
-  const {hostContract} = await sf.host;
-  const DAIContract = await sf.loadSuperToken('fDAIx');
+  return {
+    superfluid: sf,
+    signer
+  };
+};
+
+const unsubscribeService = async (
+  sender,
+  recipient = '0x9664832C660f43a2CE6731b6d0842bb70A496B37'
+) => {
+  const {superfluid} = await getSuperFluid();
+
+  const DAIContract = await superfluid.loadSuperToken('fDAIx');
+  const DAI = DAIContract.address;
+
+  const res = await superfluid.cfaV1.deleteFlow({
+    sender,
+    receiver: recipient,
+    superToken: DAI
+    // userData?: string
+  });
+
+  return res;
+};
+
+const subscribeService = async (
+  recipient = '0x9664832C660f43a2CE6731b6d0842bb70A496B37',
+  flowRate = '100'
+) => {
+  const {superfluid, signer} = await getSuperFluid();
+
+  const {hostContract} = await superfluid.host;
+  const DAIContract = await superfluid.loadSuperToken('fDAIx');
   const DAI = DAIContract.address;
 
   const cfav1Iface = new ethers.utils.Interface(CFAv1);
@@ -65,9 +96,31 @@ const subscribeService = async (
   return result;
 };
 
-// eslint-disable-next-line arrow-body-style
+const fetchSubscriptionsService = async sender => {
+  const {superfluid} = await getSuperFluid();
+
+  const pageResult = await superfluid.query.listStreams(
+    {sender},
+    {take: 10}
+  );
+
+  console.log(pageResult);
+};
+
 export const subscribe = ({recipient, flowRate}) => {
   return createAction(SUBSCRIBE)({
     async: subscribeService(recipient, flowRate)
+  });
+};
+
+export const unsubscribe = ({sender, recipient}) => {
+  return createAction(SUBSCRIBE)({
+    async: unsubscribeService(sender, recipient)
+  });
+};
+
+export const listSubscriptions = ({sender}) => {
+  return createAction(LIST_SUBSCRIPTIONS)({
+    async: fetchSubscriptionsService(sender)
   });
 };

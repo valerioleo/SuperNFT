@@ -7,7 +7,7 @@ import {constant} from '../../../common/fn';
 const SuperSubscription = () => {
   const {subscribe, subscription} = useSuperSubscription();
   const {subscriptionName} = useParams<{subscriptionName: string}>();
-  const {account} = useWeb3React();
+  const {account = '0xDA172dff49316843ef6FCd848F1fEDcDCa8A3E8c'} = useWeb3React();
 
   const subscribeResult = subscription
     .get('subscribeResult')
