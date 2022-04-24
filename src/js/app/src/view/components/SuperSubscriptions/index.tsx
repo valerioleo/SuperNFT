@@ -64,6 +64,9 @@ const SuperSubscriptionLink = props => {
         lineHeight='64px'
         fontSize='24px'
         position='relative'
+        style={{
+          cursor: 'pointer'
+        }}
         onClick={() => subscribe({
           recipient: subscriptionReceivers[serviceName]
         })}
