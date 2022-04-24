@@ -1,14 +1,12 @@
-// import React from 'react';
 import {render} from 'react-dom';
 import {combineReducers} from 'redux';
 import {Provider} from 'react-redux';
-import './common/fn';
-// import {HelmetProvider} from 'react-helmet-async';
 import {CssBaseline} from '@mui/material';
 import {ThemeProvider} from '@mui/styles';
 import {createReduxStore} from './data/core/store';
 import theme from './theme';
 import {Web3Provider} from './view/components/Wallet';
+import './common/fn';
 
 export default (App, reducers, rootDomContainer = 'root') => {
   const combinedReducers = combineReducers(reducers);

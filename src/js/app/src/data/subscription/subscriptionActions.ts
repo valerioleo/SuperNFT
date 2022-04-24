@@ -27,7 +27,7 @@ const subscribeService = async (
   const cfav1Iface = new ethers.utils.Interface(CFAv1);
   const cfaCallEncoded = cfav1Iface.encodeFunctionData('createFlow', [
     DAI,
-    '0x9664832C660f43a2CE6731b6d0842bb70A496B37',
+    recipient,
     flowRate,
     '0x'
   ]);
