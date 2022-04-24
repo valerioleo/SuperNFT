@@ -97,13 +97,13 @@ const SuperSubscriptionLink = props => {
 const SuperSubscriptions = () => {
   // const {account} = useWeb3React();
 
-  const {listSubscriptions, unsubscribe} = useSuperSubscription();
-  const {account = '0xDA172dff49316843ef6FCd848F1fEDcDCa8A3E8c'} = useWeb3React();
+  const {unsubscribe} = useSuperSubscription();
+  const {account} = useWeb3React();
 
   useEffect(() => {
     if(account) {
-      listSubscriptions({sender: account});
-      unsubscribe({recipient: '0x9664832C660f43a2CE6731b6d0842bb70A496B37'});
+      // listSubscriptions({sender: account});
+      unsubscribe({recipient: '0x9664832C660f43a2CE6731b6d0842bb70A496B37', sender: account});
     }
   }, [account]);
 

@@ -27,19 +27,22 @@ const getSuperFluid = async () => {
 };
 
 const unsubscribeService = async (
+  sender,
   recipient = '0x9664832C660f43a2CE6731b6d0842bb70A496B37'
 ) => {
-  const {superfluid, signer} = await getSuperFluid();
+  const {superfluid} = await getSuperFluid();
 
   const DAIContract = await superfluid.loadSuperToken('fDAIx');
   const DAI = DAIContract.address;
 
-  await superfluid.cfaV1.deleteFlow({
-    sender: signer._address,
+  const res = await superfluid.cfaV1.deleteFlow({
+    sender,
     receiver: recipient,
     superToken: DAI
     // userData?: string
   });
+
+  return res;
 };
 
 const subscribeService = async (
@@ -110,9 +113,9 @@ export const subscribe = ({recipient, flowRate}) => {
   });
 };
 
-export const unsubscribe = ({recipient}) => {
+export const unsubscribe = ({sender, recipient}) => {
   return createAction(SUBSCRIBE)({
-    async: unsubscribeService(recipient)
+    async: unsubscribeService(sender, recipient)
   });
 };
 
