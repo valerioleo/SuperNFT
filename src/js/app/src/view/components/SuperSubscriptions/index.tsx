@@ -3,6 +3,7 @@ import {useEffect} from 'react';
 import {useWeb3React} from '@web3-react/core';
 import {Box, Typography} from '@mui/material';
 import useSuperSubscription from '../../../services/hooks/connections/useSuperSubscription';
+import {subscriptions} from '../../../constants/subscriptions';
 import spotify from './assets/spotify.svg';
 import apple from './assets/apple.svg';
 import hulu from './assets/amazon.svg';
@@ -23,7 +24,10 @@ const SuperSubscriptionLink = props => {
   const {
     logo,
     background,
-    serviceName
+    price,
+    image,
+    description,
+    recipient
   } = props;
 
   const {subscribe} = useSuperSubscription();
@@ -70,7 +74,10 @@ const SuperSubscriptionLink = props => {
           cursor: 'pointer'
         }}
         onClick={() => subscribe({
-          recipient: subscriptionReceivers[serviceName]
+          flowRate: price,
+          image,
+          description,
+          recipient
         })}
       >
         <Box
@@ -111,32 +118,42 @@ const SuperSubscriptions = () => {
     <>
       <Box py={15}>
         <Typography fontWeight='bold' color='white' align='center' variant='h1'>Stream your subscription <br/> in real time</Typography>
-        <Typography color='white' align='center' variant='h3'>Stream your subscription in real time</Typography>
+        <Typography color='white' align='center' variant='h3'>Collect dynamic NFT positions</Typography>
       </Box>
       <Box overflow='scroll' whiteSpace='nowrap'>
         <SuperSubscriptionLink
           serviceName='Netflix'
-          amount={9.99}
           logo={netflix}
           background={NetflixBackground}
+          amount={8.99}
+          price={subscriptions.netflix.price}
+          description={subscriptions.netflix.description}
+          image={subscriptions.netflix.image}
+          recipient={subscriptions.netflix.recipient}
         />
         <SuperSubscriptionLink
           serviceName='Spotify'
           amount={8.99}
           logo={spotify}
           background={SpotifyBackground}
+          recipient={subscriptionReceivers.spotify}
         />
         <SuperSubscriptionLink
           serviceName='Apple'
-          amount={8.99}
           logo={apple}
           background={AppleBackground}
+          amount={8.99}
+          price={subscriptions.apple.price}
+          description={subscriptions.apple.description}
+          image={subscriptions.apple.image}
+          recipient={subscriptions.apple.recipient}
         />
         <SuperSubscriptionLink
           serviceName='Hulu'
           amount={11.99}
           logo={hulu}
           background={HuluBackground}
+          recipient={subscriptionReceivers.amazon}
         />
       </Box>
     </>
