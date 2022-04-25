@@ -1,11 +1,14 @@
 // import {Link} from 'react-router-dom';
+import {useWeb3React} from '@web3-react/core';
 import {Box, Grid, Typography} from '@mui/material';
+import useSuperSubscription from '../../../services/hooks/connections/useSuperSubscription';
 import spotify from './assets/spotify.svg';
 import apple from './assets/apple.svg';
 import hulu from './assets/amazon.svg';
 import netflix from './assets/netflix.svg';
 import poweredBy from './assets/powered_by.png';
 import Switch from './switch';
+import { useEffect } from 'react';
 
 const NFTCard = () => (
   <Box display='inline-block' m={1} mt={1}>
@@ -40,7 +43,18 @@ const renderToggleRow = (name, img) => (
 
 // eslint-disable-next-line arrow-body-style
 const SuperSubscriptions = () => {
-  // const {account} = useWeb3React();
+  const {account} = useWeb3React();
+
+  const {listSubscriptions, subscription} = useSuperSubscription();
+
+  const listSubscriptionsResult = subscription
+    .get('listSubscriptionsResult');
+
+  useEffect(() => {
+    if(account) {
+      listSubscriptions(account);
+    }
+  }, [account]);
 
   return (
     <Grid container xs={12} style={{marginTop: '130px'}}>

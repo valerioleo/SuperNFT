@@ -15,7 +15,12 @@ export default (App, reducers, rootDomContainer = 'root') => {
   const MOUNT_NODE = document.getElementById(rootDomContainer) as HTMLElement;
 
   const ProvidedApp = () => (
-    <div style={{background: 'black', height: '100vh'}}>
+    <div style={{
+      background: 'black',
+      height: '100%',
+      minHeight: '100vh',
+      paddingBottom: '100px'
+    }}>
       <Web3Provider>
         <Provider store={store}>
           <ThemeProvider theme={theme}>
